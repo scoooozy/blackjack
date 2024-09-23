@@ -139,13 +139,13 @@ function App() {
 
     const doubleHand = (index: number) => {
         const bet = playerCardsBets[index - 1];
-        if (bet * 2 <= points) {
+        if (bet <= points) {
             setPlayerCardsBets([
                 ...playerCardsBets.slice(0, index - 1),
                 bet * 2,
-                ...playerCardsBets.slice(index - 1),
+                ...playerCardsBets.slice(index ),
             ]);
-            setPoints((old) => old - bet * 2);
+            setPoints((old) => old - bet);
             hit(index);
             stand(index);
         }
@@ -215,7 +215,7 @@ function App() {
                 {gameState === GameState.BET && (
                     <div className="flex items-center justify-center gap-2">
                         <button
-                            onClick={() => setCurrentBet((old) => old - 25)}
+                            onClick={() => setCurrentBet((old) => old - 50)}
                             disabled={points === 0 || currentBet === 0}
                             className="btn-black"
                         >
@@ -224,7 +224,7 @@ function App() {
                         <p className="text-black gap-1 flex items-center">{currentBet}<GiTwoCoins className="text-yellow-500" /></p>
                         <button
                             disabled={points === 0 || currentBet === points}
-                            onClick={() => setCurrentBet((old) => old + 25)}
+                            onClick={() => setCurrentBet((old) => old + 50)}
                             className="btn-black bg-red-500"
                         >
                             +
@@ -240,14 +240,14 @@ function App() {
                             onClick={() => doubleHand(turn)}
                             className="btn-black"
                             disabled={
-                                playerCardsBets[turn - 1] * 2 > points
+                                playerCardsBets[turn - 1] > points
                             }
                         >
                             Double
                         </button>
                         <button className="btn-black"
                             disabled={
-                                playerCardsBets[turn - 1] * 2 > points
+                                playerCardsBets[turn - 1] > points
                             }>Split</button>
                         <button
                             disabled={!cards || cards.length < 2}
