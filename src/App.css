@@ -1,0 +1,20 @@
+#game {
+  background: rgb(22, 21, 21);
+}
+.game-panel {
+  @apply bg-white text-black rounded-lg flex flex-row justify-center gap-10 p-2 fixed bottom-0 w-full ;
+}
+
+
+.navbar{
+  @apply max-w-[300px] absolute rounded-lg right-0;
+}
+
+.navbar button {
+  @apply block px-4 py-2 w-full text-left text-sm;
+}
+
+.btn-black {
+  @apply bg-black text-white px-4 py-1 rounded disabled:bg-slate-400 disabled:opacity-50 disabled:text-black
+}
+
